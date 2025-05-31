@@ -2,7 +2,7 @@ import { MdLocationOn, MdPhone } from 'react-icons/md';
 
 export default function TopBar() {
   return (
-    <div className="bg-pink-100 text-gray-700 text-sm py-2 flex justify-center">
+    <div className="bg-pink-100 text-gray-700 text-sm py-4 flex justify-center">
       <div className="max-w-7xl w-full px-6 md:px-24 flex justify-between items-center">
 
         {/* Address:done */}

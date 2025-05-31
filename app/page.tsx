@@ -1,7 +1,8 @@
 import TopBar from '../components/TopBar';
 import InfoTab from '../components/InfoTab';
 import Hero from '../components/HeroSection';
-import Navbar from '../components/Navbar';
+
+import FocusedSegments from '../components/FocusedSegements';
 
 export default function Home() {
   return (
@@ -9,7 +10,7 @@ export default function Home() {
       <TopBar />
       <InfoTab />
       <Hero />
-     
+      <FocusedSegments/>
       {/* Continue with other sections */}
     </>
   );
