@@ -11,6 +11,7 @@ export default function Home() {
       <InfoTab />
       <Hero />
       <FocusedSegments/>
+      
       {/* Continue with other sections */}
     </>
   );
