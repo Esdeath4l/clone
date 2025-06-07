@@ -26,7 +26,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative h-screen bg-cover bg-center"
-      style={{ backgroundImage: "url('/assests/background1.jpg')" }}
+      style={{ backgroundImage: "url('/assets/background1.jpg')" }}
     >
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
