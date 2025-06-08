@@ -2,19 +2,20 @@
 
 import { useState } from 'react';
 
-<<<<<<< HEAD:components/FocusedSegements.tsx
-export default function FocusedSegments() {
+interface FocusedSegmentsProps {
+  b2bRef?: React.RefObject<HTMLElement>;
+  b2cRef?: React.RefObject<HTMLElement>;
+}
+
+export default function FocusedSegments({ b2bRef, b2cRef }: FocusedSegmentsProps) {
   const [hovered, setHovered] = useState<number | null>(null);
 
-=======
-export default function FocusedSegments({b2bRef, b2cRef}) {
-  const [hovered, setHovered] = useState<number | null>(null);
-  const scrollToRef=(ref) => { if (ref?.current) {
-    ref.current.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-  
->>>>>>> d3d5f9f (committed on 7):components/FocusedSegments.tsx
+  const scrollToRef = (ref?: React.RefObject<HTMLElement>) => {
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="px-4 md:px-24 py-10 bg-white text-gray-800">
       {/* Section Title */}
@@ -60,11 +61,7 @@ export default function FocusedSegments({b2bRef, b2cRef}) {
                   hovered === 1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
               >
-<<<<<<< HEAD:components/FocusedSegements.tsx
-                Empowering e-commerce brands with digital tools that increase reach and enhance customer experience.
-=======
                 Catered to 500+ customers to date. Restaurants to e-Commerce companies. Individual Business Owners to SMEs
->>>>>>> d3d5f9f (committed on 7):components/FocusedSegments.tsx
               </p>
             </div>
           </div>
@@ -98,11 +95,7 @@ export default function FocusedSegments({b2bRef, b2cRef}) {
                   hovered === 2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
                 }`}
               >
-<<<<<<< HEAD:components/FocusedSegements.tsx
-                Delivering cost-effective, scalable solutions for startups and small businesses to grow online.
-=======
                 CPA and Bookkeeping Firms, Bookkeeping to Taxation Service Engagements, US to Middle East.
->>>>>>> d3d5f9f (committed on 7):components/FocusedSegments.tsx
               </p>
             </div>
           </div>
@@ -111,17 +104,16 @@ export default function FocusedSegments({b2bRef, b2cRef}) {
 
       {/* Call-to-action Buttons */}
       <div className="flex flex-col md:flex-row gap-[400px] mt-12 justify-center items-center">
-<<<<<<< HEAD:components/FocusedSegements.tsx
-        <button className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 font-semibold shadow-lg transition">
+        <button
+          onClick={() => scrollToRef(b2cRef)}
+          className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 font-semibold shadow-lg transition"
+        >
           CHECK OUT OUR B2C OFFERINGS
         </button>
-        <button className="border-2 border-pink-600 text-pink-600 px-6 py-3 rounded hover:bg-pink-50 font-semibold transition">
-=======
-        <button onClick={()=> scrollToRef(b2cRef)} className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 font-semibold shadow-lg transition">
-          CHECK OUT OUR B2C OFFERINGS
-        </button>
-        <button onClick={()=> scrollToRef(b2bRef)} className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 font-semibold shadow-lg transition">
->>>>>>> d3d5f9f (committed on 7):components/FocusedSegments.tsx
+        <button
+          onClick={() => scrollToRef(b2bRef)}
+          className="bg-pink-600 text-white px-6 py-3 rounded hover:bg-pink-700 font-semibold shadow-lg transition"
+        >
           CHECK OUT OUR B2B OFFERINGS
         </button>
       </div>
