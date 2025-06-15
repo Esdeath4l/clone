@@ -1,9 +1,22 @@
-// Example: app/about/page.tsx
-export default function AboutPage() {
+import TopBar from '/components/TopBar';
+import InfoTab from '/components/InfoTab';
+
+export default function AboutUsPage() {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">About Us</h1>
-      <p>This is a placeholder page for About Us.</p>
-    </main>
+    <>
+      {/* Top bar with address & phone number */}
+      <TopBar />
+
+      {/* Info tab with working hours & email*/}
+      <InfoTab />
+
+      {/* Your about us content goes here */}
+      <div className="max-w-7xl px-6 md:px-24 py-12">
+        <h1>About Us</h1>
+        <p>This is all about our company.</p>
+      </div>
+    </>
   );
 }
+
+
