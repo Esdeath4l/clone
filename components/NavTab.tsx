@@ -95,106 +95,90 @@ export default function Navbar() {
       } as HTMLMotionProps<"nav">}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-24 py-5 flex items-center justify-between">
-        {/* Full Desktop Menu */}
         <ul className="hidden sm:flex flex-wrap gap-4 sm:gap-8 text-[#9CA3AF] font-medium relative">
           {navItems.map((item) => {
             const submenu = getSubmenu(item.title);
             const hasMainPath = !!item.path;
-
-            if (submenu) {
-              return (
-                <li
-                  key={item.title}
-                  className="relative group cursor-pointer pb-2"
-                  onClick={() => {
-                    setActive(item.title);
-                    if (hasMainPath) handleHomeClick(item.path!);
-                  }}
-                >
-                  <div
-                    onMouseEnter={() => setHoveredMenu(item.title)}
-                    onMouseLeave={() => {
-                      setHoveredMenu(null);
-                      setServicesHoverIndex(null);
-                    }}
-                  >
-                    <span className={`hover:text-[#FFD369] ${active === item.title ? "text-[#FFD369]" : ""}`}>
-                      {item.title}
-                    </span>
-                    <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-1 -mb-2 transition-opacity duration-300 ${active === item.title && hoveredMenu === item.title ? "opacity-100" : "opacity-0"}`}>
-                      {[...Array(4)].map((_, i) => (
-                        <span key={i} className="w-1 h-1 bg-[#FFD369] rounded-full"></span>
-                      ))}
-                    </div>
-                    <div className={`absolute top-full left-0 mt-2 w-56 bg-white text-[#5A5A5A] shadow-lg rounded-md z-50 transition-all duration-300 transform ${active === item.title && hoveredMenu === item.title ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none translate-y-2"}`}>
-                      <div className="relative h-1 w-full mb-2">
-                        <span className="absolute top-0 left-1/2 w-0 h-[4px] bg-[#FFD369] rounded transition-all duration-700 origin-center transform -translate-x-1/2 group-hover:w-full group-hover:opacity-100"></span>
-                      </div>
-                      {item.title === "Services" ? (
-                        (submenu as any[]).map((service: any, idx: number) => (
-                          <div
-                            key={service.title}
-                            className="relative px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm flex justify-between items-center"
-                            onMouseEnter={() => setServicesHoverIndex(idx)}
-                            onMouseLeave={() => setServicesHoverIndex(null)}
-                          >
-                            <span>{service.title}</span>
-                            <svg className="w-3 h-3 ml-2 fill-[#FFD369]" viewBox="0 0 6 10"><path d="M0 0 L6 5 L0 10 Z" /></svg>
-                            {servicesHoverIndex === idx && (
-                              <div className="absolute top-0 left-full ml-0 w-52 bg-white shadow-md rounded-md py-2 z-50">
-                                {service.items.map((subItem: any) => (
-                                  <button
-                                    key={subItem.title}
-                                    className="block w-full text-left px-4 py-2 text-sm text-[#222831] hover:bg-[#393E46] hover:text-[#FFD369] rounded"
-                                    onClick={() => handleHomeClick(subItem.path)}
-                                  >
-                                    {subItem.title}
-                                  </button>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ))
-                      ) : (
-                        submenu.map((subItem: any) => (
-                          <div
-                            key={subItem.title}
-                            className="px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm"
-                            onClick={() => handleHomeClick(subItem.path)}
-                          >
-                            {subItem.title}
-                          </div>
-                        ))
-                      )}
-                    </div>
-                  </div>
-                </li>
-              );
-            }
+            const isActive = active === item.title;
 
             return (
               <li
                 key={item.title}
+                className="relative group cursor-pointer pb-2"
+                onMouseEnter={() => {
+                  setHoveredMenu(item.title);
+                  if (item.title === "Services") setServicesHoverIndex(null);
+                }}
+                onMouseLeave={() => {
+                  setHoveredMenu(null);
+                  setServicesHoverIndex(null);
+                }}
                 onClick={() => {
                   setActive(item.title);
-                  if (item.path) handleHomeClick(item.path);
+                  if (hasMainPath) handleHomeClick(item.path!);
                 }}
-                className="relative group cursor-pointer hover:text-[#FFD369] pb-2"
               >
-                <span className={`${active === item.title ? "text-[#FFD369]" : ""}`}>{item.title}</span>
-                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-1 -mb-2 transition-opacity duration-300 ${active === item.title ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
-                  {[...Array(4)].map((_, i) => (
-                    <span key={i} className="w-1 h-1 bg-[#FFD369] rounded-full"></span>
-                  ))}
+                <span className={`hover:text-[#FFD369] ${isActive ? "text-[#FFD369]" : ""}`}>
+                  {item.title}
+                </span>
+                <div className={`absolute top-full left-0 mt-2 w-64 bg-white text-[#5A5A5A] shadow-lg rounded-md z-50 transition-all duration-300 transform ${
+                  hoveredMenu === item.title ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none translate-y-2"
+                }`}>
+                  {item.title === "Services" ? (
+                    (submenu as any[]).map((service: any, idx: number) => (
+                      <div
+                        key={service.title}
+                        className="relative px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm flex justify-between items-center"
+                        onMouseEnter={() => setServicesHoverIndex(idx)}
+                      >
+                        <span>{service.title}</span>
+                        <svg className="w-3 h-3 ml-2 fill-[#FFD369]" viewBox="0 0 6 10"><path d="M0 0 L6 5 L0 10 Z" /></svg>
+                        {servicesHoverIndex === idx && (
+                          <div className="absolute top-0 left-full ml-0 w-52 bg-white shadow-md rounded-md py-2 z-50">
+                            {service.items.map((subItem: any) => (
+                              <div
+                                key={subItem.title}
+                                role="button"
+                                tabIndex={0}
+                                className="px-4 py-2 text-sm text-[#222831] hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleHomeClick(subItem.path);
+                                }}
+                                onKeyDown={(e) => {
+                                  if (e.key === "Enter") handleHomeClick(subItem.path);
+                                }}
+                              >
+                                {subItem.title}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    submenu?.map((subItem: any) => (
+                      <div
+                        key={subItem.title}
+                        className="px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleHomeClick(subItem.path);
+                        }}
+                      >
+                        {subItem.title}
+                      </div>
+                    ))
+                  )}
                 </div>
               </li>
             );
           })}
         </ul>
 
-        {/* Mobile Menu Icon */}
+        {/* Mobile Hamburger */}
         <div className="sm:hidden">
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[#5A5A5A] focus:outline-none">
+          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[#5A5A5A]">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                 d={isMobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
@@ -203,7 +187,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Content */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="sm:hidden bg-white shadow-md px-6 py-4 absolute top-full left-0 w-full z-50 max-h-[70vh] overflow-y-auto">
           <ul className="space-y-4">
@@ -256,7 +240,7 @@ export default function Navbar() {
                                 setIsMobileMenuOpen(false);
                                 handleHomeClick(subItem.path);
                               }}
-                              className="text-[#5A5A5A] font-medium hover:text-[#FFD369]"
+                              className="text-[#5A5A5A] font-medium hover:text-[#FFD369] cursor-pointer"
                             >
                               {subItem.title}
                             </li>
