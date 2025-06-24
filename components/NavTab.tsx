@@ -1,7 +1,8 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
 export default function Navbar() {
   const [sticky, setSticky] = useState(false);
@@ -84,12 +85,17 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed left-0 right-0 z-50 transition-all duration-600 ${sticky ? "top-0 shadow-md bg-white" : "top-[150px] bg-transparent"}`}
+      {...{
+        initial: { y: -50, opacity: 0 },
+        animate: { y: 0, opacity: 1 },
+        transition: { duration: 0.6, ease: "easeOut" },
+        className: `fixed left-0 right-0 z-50 transition-all duration-600 ${
+          sticky ? "top-0 shadow-md bg-white" : "top-[150px] bg-transparent"
+        }`,
+      } as HTMLMotionProps<"nav">}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-24 py-5 flex items-center justify-between">
+        {/* Full Desktop Menu */}
         <ul className="hidden sm:flex flex-wrap gap-4 sm:gap-8 text-[#9CA3AF] font-medium relative">
           {navItems.map((item) => {
             const submenu = getSubmenu(item.title);
@@ -109,19 +115,22 @@ export default function Navbar() {
                     <span className={`hover:text-[#FFD369] ${active === item.title ? "text-[#FFD369]" : ""}`}>
                       {item.title}
                     </span>
+                    {/* Underline dots */}
                     <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-1 -mb-2 transition-opacity duration-300 ${active === item.title && hoveredMenu === item.title ? "opacity-100" : "opacity-0"}`}>
                       {[...Array(4)].map((_, i) => (
                         <span key={i} className="w-1 h-1 bg-[#FFD369] rounded-full"></span>
                       ))}
                     </div>
+
+                    {/* Dropdown Menu */}
                     <div className={`absolute top-full left-0 mt-2 w-56 bg-white text-[#5A5A5A] shadow-lg rounded-md z-50 transition-all duration-300 transform ${active === item.title && hoveredMenu === item.title ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none translate-y-2"}`}>
                       <div className="relative h-1 w-full mb-2">
                         <span className="absolute top-0 left-1/2 w-0 h-[4px] bg-[#FFD369] rounded transition-all duration-700 origin-center transform -translate-x-1/2 group-hover:w-full group-hover:opacity-100"></span>
                       </div>
                       {item.title === "Services" ? (
-                        submenu.map((service, idx) => (
+                        (submenu as any[]).map((service: any, idx: number) => (
                           <div
-                            key={service.title || idx}
+                            key={service.title}
                             className="relative px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm flex justify-between items-center"
                             onMouseEnter={() => setServicesHoverIndex(idx)}
                             onMouseLeave={() => setServicesHoverIndex(null)}
@@ -130,7 +139,7 @@ export default function Navbar() {
                             <svg className="w-3 h-3 ml-2 fill-[#FFD369]" viewBox="0 0 6 10"><path d="M0 0 L6 5 L0 10 Z" /></svg>
                             {servicesHoverIndex === idx && (
                               <div className="absolute top-0 left-full ml-0 w-52 bg-white shadow-md rounded-md py-2 z-50">
-                                {Array.isArray(service.items) && service.items.map((subItem) => (
+                                {service.items.map((subItem: any) => (
                                   <button
                                     key={subItem.title}
                                     className="block w-full text-left px-4 py-2 text-sm text-[#222831] hover:bg-[#393E46] hover:text-[#FFD369] rounded"
@@ -144,7 +153,7 @@ export default function Navbar() {
                           </div>
                         ))
                       ) : (
-                        submenu.map((subItem) => (
+                        submenu.map((subItem: any) => (
                           <div
                             key={subItem.title}
                             className="px-4 py-2 hover:bg-[#393E46] hover:text-[#FFD369] cursor-pointer text-sm"
@@ -159,7 +168,6 @@ export default function Navbar() {
                 </li>
               );
             }
-
             return (
               <li
                 key={item.title}
@@ -169,9 +177,7 @@ export default function Navbar() {
                 }}
                 className="relative group cursor-pointer hover:text-[#FFD369] pb-2"
               >
-                <span className={`${active === item.title ? "text-[#FFD369]" : ""}`}>
-                  {item.title}
-                </span>
+                <span className={`${active === item.title ? "text-[#FFD369]" : ""}`}>{item.title}</span>
                 <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-1 -mb-2 transition-opacity duration-300 ${active === item.title ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
                   {[...Array(4)].map((_, i) => (
                     <span key={i} className="w-1 h-1 bg-[#FFD369] rounded-full"></span>
@@ -182,6 +188,7 @@ export default function Navbar() {
           })}
         </ul>
 
+        {/* Mobile Menu Icon */}
         <div className="sm:hidden">
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="text-[#5A5A5A] focus:outline-none">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,14 +197,9 @@ export default function Navbar() {
             </svg>
           </button>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="sm:hidden px-6 mt-4">
-            <button className="w-full bg-[#FFD369] text-white py-2 px-4 rounded text-sm">GET A QUOTE</button>
-          </div>
-        )}
       </div>
 
+      {/* Mobile Menu Content */}
       {isMobileMenuOpen && (
         <div className="sm:hidden bg-white shadow-md px-6 py-4 absolute top-full left-0 w-full z-50 max-h-[70vh] overflow-y-auto">
           <ul className="space-y-4">
@@ -219,7 +221,7 @@ export default function Navbar() {
                   {submenu && (
                     <ul className="ml-4 mt-2 space-y-2 text-sm text-[#5A5A5A]">
                       {item.title === "Services"
-                        ? submenu.map((section, idx) => (
+                        ? (submenu as any[]).map((section: any, idx: number) => (
                             <li key={section.title || idx}>
                               <details className="group">
                                 <summary className="flex items-center justify-between py-2 cursor-pointer text-[#FFD369] font-semibold text-sm">
@@ -227,7 +229,7 @@ export default function Navbar() {
                                   <span className="ml-2 text-xs text-[#5A5A5A] group-open:rotate-180 transition-transform">&#9660;</span>
                                 </summary>
                                 <ul className="pl-4 mt-1 space-y-1">
-                                  {section.items.map((subItem) => (
+                                  {section.items.map((subItem: any) => (
                                     <li
                                       key={subItem.title}
                                       onClick={() => {
@@ -243,7 +245,7 @@ export default function Navbar() {
                               </details>
                             </li>
                           ))
-                        : submenu.map((subItem) => (
+                        : submenu.map((subItem: any) => (
                             <li
                               key={subItem.title}
                               onClick={() => {

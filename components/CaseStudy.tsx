@@ -2,16 +2,17 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const caseStudies = [
-  { title: 'AQUA SPROUT LLC', image: '/assets/aqua.jpg' },
-  { title: 'FISHER BUSINESS MANAGEMENT', image: '/assets/fisher.jpg' },
-  { title: 'GOLDEN CROWN PANADERIA', image: '/assets/golden.jpg' },
-  { title: 'MARK ARON', image: '/assets/markaron.jpg' },
-  { title: 'COE & COE', image: '/assets/coe&coe.jpg' },
-  { title: 'FAIR PATTERN', image: '/assets/fairpattern.jpg' },
-  { title: 'NYC', image: '/assets/nyc.jpg' },
-  { title: 'THE NAKED DOG SHOP', image: '/assets/nakeddog.jpg' },
+  { title: 'AQUA SPROUT LLC', image: '/assets/aqua.jpg',path:'/cases/aqua-sprout-llc' },
+  { title: 'FISHER BUSINESS MANAGEMENT', image: '/assets/fisher.jpg',path:'/cases/fisher-business' },
+  { title: 'GOLDEN CROWN PANADERIA', image: '/assets/golden.jpg',path:'/cases/golden-crown'},
+  { title: 'MARK ARON', image: '/assets/markaron.jpg',path:'/cases/mark-aron' },
+  { title: 'COE & COE', image: '/assets/coe&coe.jpg',path:'/cases/coe-and-coe' },
+  { title: 'FAIR PATTERN', image: '/assets/fairpattern.jpg',path:'/cases/fair-pattern' },
+  { title: 'NYC', image: '/assets/nyc.jpg',path:'/cases/nyc' },
+  { title: 'THE NAKED DOG SHOP', image: '/assets/nakeddog.jpg',path:'/cases/naked-dog-shop' },
 ];
 
 export default function CaseStudies() {
@@ -21,8 +22,8 @@ export default function CaseStudies() {
       {/* Section Header */}
       <div className="mb-4">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-1 bg-black"></div>
-            <h6 className="uppercase text-sm tracking-widest text-black font-semibold">
+            <div className="w-12 h-1 bg-[#FFD369]"></div>
+            <h6 className="uppercase text-sm tracking-widest text-[#FFD369] font-semibold">
                 Our Case Studies
             </h6>
             </div>
@@ -37,7 +38,7 @@ export default function CaseStudies() {
             className="relative group h-48 md:h-56 lg:h-64 overflow-hidden shadow-md hover:shadow-xl transition duration-500 cursor-pointer"
           >
             {/* Background Image */}
-            <Image
+            <Link href={item.path}><Image
               src={item.image}
               alt={item.title}
               fill
@@ -56,7 +57,7 @@ export default function CaseStudies() {
 
             {/* White border: low opacity by default, expands from center on hover */}
             <div className="absolute inset-0 rounded-lg border-2 border-white opacity-20 group-hover:opacity-100 scale-0 group-hover:scale-50 origin-center transition-all duration-100 ease-out pointer-events-none"></div>
-          </div>
+          </Link></div>
         ))}
       </div>
     </section>

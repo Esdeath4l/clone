@@ -1,12 +1,12 @@
-
 'use client';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 import InfoTab from '../../../components/InfoTab';
 import TopBar from '../../../components/TopBar';
 import Footer from '../../../components/Footer';
 import Navbar from '../../../components/NavTab';
 import NycComponent from '../../../components/NycComponent';
 import Link from 'next/link';
+
 export default function Nyc() {
   return (
     <>
@@ -14,7 +14,7 @@ export default function Nyc() {
       <InfoTab />
       <Navbar />
 
-     {/* Hero Section */}
+      {/* Hero Section */}
       <section className="relative h-[70vh] bg-[#0D1B2A] text-white overflow-hidden">
         {/* Decorative Wave Background (Top) */}
         <svg
@@ -35,46 +35,50 @@ export default function Nyc() {
         <div className="relative h-[70vh] bg-cover bg-center flex items-center justify-center text-center px-4">
           <div className="max-w-3xl w-full text-center mx-auto">
             <motion.h1
-              className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg"
-              initial={{ y: 30, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              {...{
+                className: "text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg",
+                initial: { y: 30, opacity: 0 },
+                animate: { y: 0, opacity: 1 },
+                transition: { delay: 0.2, duration: 0.6 }
+              } as HTMLMotionProps<'h1'>}
             >
-            NYC
+              NYC
             </motion.h1>
 
             <motion.h6
-              className="text-lg md:text-2xl font-light text-gray-200"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
+              {...{
+                className: "text-lg md:text-2xl font-light text-gray-200",
+                initial: { y: 20, opacity: 0 },
+                animate: { y: 0, opacity: 1 },
+                transition: { delay: 0.4, duration: 0.6 }
+              } as HTMLMotionProps<'h6'>}
             >
               <Link href="/"> Home </Link> / <Link href="/cases/nyc"> Cases / NYC </Link>
             </motion.h6>
           </div>
         </div>
       </section>
-             
 
-      {/* About Page Section */}
+      {/* NycComponent */}
       <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
+        {...{
+          initial: { opacity: 0, y: 50 },
+          whileInView: { opacity: 1, y: 0 },
+          transition: { duration: 0.6 },
+          viewport: { once: true }
+        } as HTMLMotionProps<'section'>}
       >
         <NycComponent />
       </motion.section>
 
-      {/* Our Team Section */}
-     
-
-      {/* Footer Section */}
+      {/* Footer */}
       <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        viewport={{ once: true }}
+        {...{
+          initial: { opacity: 0 },
+          whileInView: { opacity: 1 },
+          transition: { delay: 0.4, duration: 0.6 },
+          viewport: { once: true }
+        } as HTMLMotionProps<'section'>}
       >
         <Footer />
       </motion.section>

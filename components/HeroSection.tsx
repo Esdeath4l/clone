@@ -1,11 +1,10 @@
 'use client';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
+import Link from 'next/link';
 
 export default function HeroSection() {
   return (
- <section className="relative h-screen bg-[#0D1B2A] text-white overflow-hidden">
+    <section className="relative h-screen bg-[#0D1B2A] text-white overflow-hidden">
       {/* Decorative Wave Background (Top) */}
       <svg
         className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none"
@@ -24,40 +23,49 @@ export default function HeroSection() {
       {/* Hero Content */}
       <div className="relative z-10 flex items-center justify-start h-full px-6 sm:px-10 lg:px-20 xl:px-56">
         <div className="max-w-lg w-full text-left">
+
           <motion.h1
-            className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            {...{
+              className: "text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg",
+              initial: { y: 30, opacity: 0 },
+              animate: { y: 0, opacity: 1 },
+              transition: { delay: 0.2, duration: 0.6 }
+            } as HTMLMotionProps<'h1'>}
           >
             Welcome to Konnect Books
           </motion.h1>
 
           <motion.h6
-            className="text-lg font-light mb-8 text-[#EEEEEE]"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
+            {...{
+              className: "text-lg font-light mb-8 text-[#EEEEEE]",
+              initial: { y: 20, opacity: 0 },
+              animate: { y: 0, opacity: 1 },
+              transition: { delay: 0.4, duration: 0.6 }
+            } as HTMLMotionProps<'h6'>}
           >
             from SMEs and CPAs
           </motion.h6>
 
           <motion.div
-            className="flex justify-start gap-4"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
+            {...{
+              className: "flex justify-start gap-4",
+              initial: { y: 20, opacity: 0 },
+              animate: { y: 0, opacity: 1 },
+              transition: { delay: 0.6, duration: 0.6 }
+            } as HTMLMotionProps<'div'>}
           >
             {/* Contact Us Button */}
             <button className="relative inline-block rounded-full text-[#0D1B2A] font-semibold py-3 px-8 overflow-hidden transition-all duration-500 bg-[#FFD369] hover:text-white group shadow-md">
-              <span className="relative z-10">Contact Us</span>
+              <span className="relative z-10">
+                <Link href="/contact-us" >CONTACT US</Link>
+              </span>
               <span className="absolute inset-y-0 left-1/2 w-0 group-hover:w-full bg-[#e6b845] transition-all duration-500 origin-center transform -translate-x-1/2 rounded" />
             </button>
 
             {/* Learn More Button */}
             <button className="relative inline-block rounded-full text-white font-semibold py-3 px-8 border-2 border-white overflow-hidden group shadow-md">
               <span className="relative z-10 group-hover:text-white transition-all duration-500">
-                Learn More
+                <Link href="/" >LEARN MORE</Link>
               </span>
               <span className="absolute inset-0 w-0 group-hover:w-full bg-[#FFD369] transition-all duration-500 rounded" />
             </button>

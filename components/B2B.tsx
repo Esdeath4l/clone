@@ -1,34 +1,41 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 const services1 = [
   {
+    path:"/services/finance/bookkeeping",
     title: "Bookkeeping Services",
     icon: "/assets/b2b1-icon.jpg",
     desc: "Every company has to maintain its books. Konnect’s Accounting & Bookkeeping function just does that.",
   },
   {
+    path:"/services/finance/taxation",
     title: "Taxation",
     icon: "/assets/b2b2-icon.jpg",
     desc: "Increase in mainland costs are prompting CPA’s, Accountants and Companies to opt for outsourcing tax.",
   },
   {
+    path:"/services/finance/accounting",
     title: "Accounting",
     icon: "/assets/b2b3-icon.jpg",
     desc: "Cost, Time and Resource, are key factors for Individuals or a Company’s sustainability & growth.",
   },
   {
+    path:"/services/finance/reconciliation",
     title: "Reconciliation Services",
     icon: "/assets/b2b4-icon.jpg",
     desc: "Reconciliation Services are essential to verify consistency of the money coming in & going out.",
   },
   {
+    path:"/services/finance/financial-reporting",
     title: "Financial Reporting",
     icon: "/assets/b2b5-icon.jpg",
     desc: "Financial reporting forms a very important part of every company’s daily operational requirement. especially SMEs.",
   },
   {
+    path:"/services/finance/cash-flow",
     title: "Cash Flow Management",
     icon: "/assets/b2b6-icon.jpg",
     desc: "Konnect offer’s Cash flow Accounting Services to diverse industries according to our esteemed client’s requirements.",
@@ -37,11 +44,13 @@ const services1 = [
 
 const services2 = [
   {
+    path:"/services/bpo/payroll",
     title: "Payroll Processing",
     icon: "/assets/b2b6-icon.jpg",
     desc: "Konnect has been catering to the Payroll Processing to more than 200 customers.",
   },
   {
+    path:"/services/bpo/order-processing",
     title: "Customer Order Processing",
     icon: "/assets/b2b7-icon.jpg",
     desc: "Konnect provides back-office & and sales ordering process support for their valuable customers.",
@@ -75,16 +84,16 @@ export default function B2B() {
             <div
               key={index}
               className="bg-white text-black rounded-xl border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] transform hover:scale-[1.02] transition duration-300"
-            >
+            ><Link href={service.path}>
               <div className="mb-4 flex justify-center pt-6">
                 <Image
                   src={service.icon}
                   alt={service.title}
                   width={50}
                   height={50}
-                  className="object-contain"
+                  className="cursor-pointer"
                 />
-              </div>
+              </div></Link>
               <div className="px-6 pb-6">
                 <h3 className="text-xl font-semibold mb-2 text-center">{service.title}</h3>
                 <p className="text-sm text-center text-gray-700">{service.desc}</p>
@@ -108,16 +117,16 @@ export default function B2B() {
             <div
               key={index}
               className="bg-white text-black rounded-xl border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.25)] transform hover:scale-[1.02] transition duration-300"
-            >
+            ><Link href={service.path}>
               <div className="mb-4 flex justify-center pt-6">
                 <Image
                   src={service.icon}
                   alt={service.title}
                   width={50}
                   height={50}
-                  className="object-contain"
+                  className="cursor-pointer"
                 />
-              </div>
+              </div></Link>
               <div className="px-6 pb-6">
                 <h3 className="text-xl font-semibold mb-2 text-center">{service.title}</h3>
                 <p className="text-sm text-center text-gray-700">{service.desc}</p>

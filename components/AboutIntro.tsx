@@ -1,17 +1,20 @@
 'use client';
-import { motion } from 'framer-motion';
+
+import { motion, HTMLMotionProps } from 'framer-motion';
 
 export default function AboutIntro() {
   return (
     <section className="w-full bg-[#EEEEEE] py-16 px-4 sm:px-10 md:px-20 lg:px-28 xl:px-40">
       <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-        
+
         {/* LEFT: YouTube Video */}
         <motion.div
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex-1 w-full h-[300px] sm:h-[400px] lg:h-[360px]"
+          {...{
+            initial: { x: -50, opacity: 0 },
+            animate: { x: 0, opacity: 1 },
+            transition: { duration: 0.6 },
+            className: "flex-1 w-full h-[300px] sm:h-[400px] lg:h-[360px]",
+          } as HTMLMotionProps<'div'>}
         >
           <div className="w-full h-full rounded-lg overflow-hidden shadow-lg">
             <iframe
@@ -27,10 +30,12 @@ export default function AboutIntro() {
 
         {/* RIGHT: Text Content */}
         <motion.div
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="flex-1"
+          {...{
+            initial: { x: 50, opacity: 0 },
+            animate: { x: 0, opacity: 1 },
+            transition: { duration: 0.6 },
+            className: "flex-1",
+          } as HTMLMotionProps<'div'>}
         >
           <div className="mb-3 text-sm text-[#393E46] tracking-widest uppercase font-semibold flex items-center gap-3">
             <span className="w-10 h-[2px] bg-[#FFD369] inline-block" />

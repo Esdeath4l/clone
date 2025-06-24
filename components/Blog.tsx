@@ -1,5 +1,7 @@
 'use client';
 
+import Link from "next/link";
+
 const services = [
   {
     title: "Key Details to Help You Understand USA Taxation",
@@ -37,7 +39,7 @@ export default function Blogs() {
         <button className="relative group px-8 py-3 rounded-full border border-[#FFD369] bg-[#FFD369] overflow-hidden transition-all duration-500">
           <span className="absolute inset-0 bg-[#222831] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-in-out"></span>
           <span className="relative z-10 text-[#222831] group-hover:text-[#FFD369] transition-colors duration-300 font-medium">
-            VIEW MORE
+            <Link href="/ourblogs">VIEW MORE</Link>
           </span>
         </button>
       </div>

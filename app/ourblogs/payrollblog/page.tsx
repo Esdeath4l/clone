@@ -6,9 +6,9 @@ import TopBar from '../../../components/TopBar';
 import InfoTab from '../../../components/InfoTab';
 import Navbar from '../../../components/NavTab';
 import Footer from '../../../components/Footer';
-import { motion } from 'framer-motion';
+import { HTMLMotionProps, motion } from 'framer-motion';
 
-export default function BlogPayroll() {
+export default function PayrollBlog() {
   return (
     <>
       <TopBar />
@@ -38,21 +38,26 @@ export default function BlogPayroll() {
 
   <div className="max-w-3xl w-full text-center mx-auto">
           <motion.h1
-            className="text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-          >Payroll in QBO
-          </motion.h1>
+              {...{
+                className: "text-5xl md:text-7xl font-extrabold mb-6 drop-shadow-lg",
+                initial: { y: 30, opacity: 0 },
+                animate: { y: 0, opacity: 1 },
+                transition: { delay: 0.2, duration: 0.6 }
+              } as HTMLMotionProps<'h1'>}
+            >
+              Payroll In QBO
+            </motion.h1>
 
-          <motion.h6
-            className="text-lg md:text-2xl font-light text-gray-200"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-             <Link href="/"> Home </Link> / <Link href="/home/ourblogs">ourblogs</Link> / <Link href="/ourblogs/payrollblog">Payroll for QBO</Link>
-          </motion.h6>
+            <motion.h6
+              {...{
+                className: "text-lg md:text-2xl font-light text-gray-200",
+                initial: { y: 20, opacity: 0 },
+                animate: { y: 0, opacity: 1 },
+                transition: { delay: 0.4, duration: 0.6 }
+              } as HTMLMotionProps<'h6'>}
+            >
+              <Link href="/"> Home </Link> / <Link href="/ourblogs"> Our Blog </Link> / <Link href="/ourblogs/payrollblog">Payroll</Link>
+            </motion.h6>
         </div>
         </div>
       </section>
@@ -79,46 +84,50 @@ export default function BlogPayroll() {
               height={400}
               className="w-full h-auto"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-              <h1 className="text-white text-5xl font-bold tracking-wide">PAYROLL</h1>
-            </div>
           </div>
 
           <div className="p-6">
             <h1 className="text-3xl font-bold mb-4">Payroll In QBO</h1>
-            <p className="text-[#393E46] text-sm mb-6">
-              Tax season may come just once a year, but preparing for it should be an ongoing process for CPAs...
+            <p className="text-gray-700 text-sm mb-6">
+            Tax season may come just once a year, but preparing for it should be an ongoing process for CPAs.
+            By planning ahead and keeping key considerations in mind, you can ensure a smoother, more efficient
+            tax season when the time arrives.
             </p>
-
+            
             <h2 className="text-2xl font-bold mb-4">1. Stay Current with Tax Law Changes</h2>
-            <p className="text-[#393E46] text-sm mb-6">
-              Tax laws are constantly evolving, and staying on top of them is crucial...
-            </p>
-
+              <p className="text-gray-700 text-sm mb-6">
+                  Tax laws are constantly evolving, and staying on top of them is crucial for providing accurate and
+                  compliant services to your clients.
+              </p>
+                                  
             <h2 className="text-2xl font-bold mb-4">2. Keep Software & Systems Updated</h2>
-            <p className="text-[#393E46] text-sm mb-6">
-              Use the latest tools to avoid compatibility issues...
-            </p>
-
+              <p className="text-gray-700 text-sm mb-6">
+                 Tax laws are constantly evolving, and staying on top of them is crucial for providing accurate and compliant services to your clients. Review changes in tax regulations regularly and ensure that both you and your team are well-versed in these updates.
+                 Conduct periodic training sessions to make sure everyone in your firm is knowledgeable and ready to implement new tax laws when needed.
+              </p>
+                                  
             <h2 className="text-2xl font-bold mb-4">3. Review Your Fee Structure</h2>
-            <p className="text-[#393E46] text-sm mb-6">
-              Assess pricing regularly to remain competitive and fair...
-            </p>
-
+                <p className="text-gray-700 text-sm mb-6">
+                    Tax laws are constantly evolving, and staying on top of them is crucial for providing accurate and compliant services to your clients. Review changes in tax regulations regularly and ensure that both you and your team are well-versed in these updates.
+                    Conduct periodic training sessions to make sure everyone in your firm is knowledgeable and ready to implement new tax laws when needed.
+                </p>
+                                  
             <h2 className="text-2xl font-bold mb-4">4. Improve Internal Processes</h2>
-            <p className="text-[#393E46] text-sm mb-6">
-              Optimize workflows to enhance efficiency...
-            </p>
-
+                <p className="text-gray-700 text-sm mb-6">
+                  Tax laws are constantly evolving, and staying on top of them is crucial for providing accurate and compliant services to your clients. Review changes in tax regulations regularly and ensure that both you and your team are well-versed in these updates.
+                  Conduct periodic training sessions to make sure everyone in your firm is knowledgeable and ready to implement new tax laws when needed.
+                </p>
+                                  
             <h2 className="text-2xl font-bold mb-4">5. Prioritize Data Security</h2>
-            <p className="text-[#393E46] text-sm mb-6">
-              Encrypt sensitive data and ensure secure client communication...
-            </p>
-          </div>
+              <p className="text-gray-700 text-sm mb-6">
+                Tax laws are constantly evolving, and staying on top of them is crucial for providing accurate and compliant services to your clients. Review changes in tax regulations regularly and ensure that both you and your team are well-versed in these updates.
+                Conduct periodic training sessions to make sure everyone in your firm is knowledgeable and ready to implement new tax laws when needed.
+              </p>
         </div>
       </div>
-
-      <Footer />
+    </div>
+                                  
+    <Footer />
     </>
-  );
-}
+    );
+  }
