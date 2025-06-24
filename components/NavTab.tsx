@@ -22,9 +22,9 @@ export default function Navbar() {
   const navItems = [
     { title: "Home", path: "/home" },
     { title: "About Us" },
-    { title: "Services" },
+    { title: "Services", path: "/services" },
     { title: "Approach", path: "/approach" },
-    { title: "Cases" },
+    { title: "Cases", path: "/cases" },
     { title: "Our Blog", path: "/ourblogs" },
     { title: "Contact Us", path: "/contact-us" },
   ];
@@ -99,14 +99,20 @@ export default function Navbar() {
         <ul className="hidden sm:flex flex-wrap gap-4 sm:gap-8 text-[#9CA3AF] font-medium relative">
           {navItems.map((item) => {
             const submenu = getSubmenu(item.title);
+            const hasMainPath = !!item.path;
+
             if (submenu) {
               return (
-                <li key={item.title} className="relative group cursor-pointer pb-2">
+                <li
+                  key={item.title}
+                  className="relative group cursor-pointer pb-2"
+                  onClick={() => {
+                    setActive(item.title);
+                    if (hasMainPath) handleHomeClick(item.path!);
+                  }}
+                >
                   <div
-                    onMouseEnter={() => {
-                      setActive(item.title);
-                      setHoveredMenu(item.title);
-                    }}
+                    onMouseEnter={() => setHoveredMenu(item.title)}
                     onMouseLeave={() => {
                       setHoveredMenu(null);
                       setServicesHoverIndex(null);
@@ -115,14 +121,11 @@ export default function Navbar() {
                     <span className={`hover:text-[#FFD369] ${active === item.title ? "text-[#FFD369]" : ""}`}>
                       {item.title}
                     </span>
-                    {/* Underline dots */}
                     <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 flex space-x-1 -mb-2 transition-opacity duration-300 ${active === item.title && hoveredMenu === item.title ? "opacity-100" : "opacity-0"}`}>
                       {[...Array(4)].map((_, i) => (
                         <span key={i} className="w-1 h-1 bg-[#FFD369] rounded-full"></span>
                       ))}
                     </div>
-
-                    {/* Dropdown Menu */}
                     <div className={`absolute top-full left-0 mt-2 w-56 bg-white text-[#5A5A5A] shadow-lg rounded-md z-50 transition-all duration-300 transform ${active === item.title && hoveredMenu === item.title ? "opacity-100 pointer-events-auto translate-y-0" : "opacity-0 pointer-events-none translate-y-2"}`}>
                       <div className="relative h-1 w-full mb-2">
                         <span className="absolute top-0 left-1/2 w-0 h-[4px] bg-[#FFD369] rounded transition-all duration-700 origin-center transform -translate-x-1/2 group-hover:w-full group-hover:opacity-100"></span>
@@ -168,6 +171,7 @@ export default function Navbar() {
                 </li>
               );
             }
+
             return (
               <li
                 key={item.title}
