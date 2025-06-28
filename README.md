@@ -51,6 +51,6 @@ tailwind.config.ts → Tailwind CSS configuration
 
 This project is intended for educational and personal learning purposes only. It is **not affiliated with or endorsed by Konnect Books**.
 
----
+
 
 
