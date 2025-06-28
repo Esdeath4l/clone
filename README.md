@@ -1,9 +1,4 @@
 
----
-
-## ✅ Final `README.md` (Clean & Accurate)
-
-````markdown
 # Konnect Books Inspired Landing Page
 
 This is a fully responsive and high-fidelity landing page built using **Next.js**, **Tailwind CSS**, and **Framer Motion**, inspired by the design and structure of the Konnect Books website. It was created for learning and practicing modern frontend development, focusing on animations, responsiveness, and clean UI/UX.
